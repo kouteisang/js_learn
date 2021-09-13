@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!-- 可以将js代码编写到外部js文件中，然后通过script标签引入
+         写到外部文件中可以在不同的页面中同时引用，也可以利用到浏览器的韩村机制
+     -->
+    <!--  script标签一旦用于引入外部文件 就不能在编写代码了，及时编写了浏览器也会忽略   -->
+    <script type="text/javascript" src="js/script.js"></script>
+</head>
+<body>
+    <!--我们可以将js代码编写到onclick属性中
+      当我们点击时才执行
+    -->
+    <button onclick="alert('讨厌')">点我一下</button>
+
+    <!--
+        可以讲js代码写在超链接的href属性中，这样当点击超链接时，会执行js代码
+    -->
+    <a href="javascript:alert('让你点你就点！')">点一下</a>
+</body>
+</html>
