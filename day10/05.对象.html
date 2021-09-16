@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript">
+      var obj = new Object();
+      obj.name = "孙悟空";
+      obj.age = 18
+      obj.sayName = function () {
+        console.log(obj.name)
+      }
+      console.log(obj.sayName())
+
+      /**
+       * 函数也可以称为对象的属性，
+       *  如果一个函数作为一个对象的属性保存
+       *  那么我们称这个函数是这个对象的方法
+       *  调用这个函数就是说调用对象的方法
+       */
+
+      var obj2 = {
+        name:"猪八戒1",
+        age:18,
+        sayName:function () {
+          console.log(obj2.name);
+        }
+      };
+      obj2.sayName()
+    </script>
+</head>
+<body>
+
+</body>
+</html>

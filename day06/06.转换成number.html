@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <script>
+    /*
+    *   将其他的数据类型转换成Number
+    *   转换方式一：
+    *     使用Number()函数
+    *     1. 如果纯数字，则直接转换成数字
+    *     2. 如果字符串中有非数字的内容，则直接转换成NaN
+    *     3. 如果字符串是空传或者全是空格 则转换成0
+    *     4. NUll -> 0
+    *     5. undefined->NaN
+    *     6. 字符串->NaN
+        转换方式二：
+        *   -则种方式专门用来对付字符串
+        *   -parseInt() 可以吧一个字符串中有效的整数内容取出来然后转换成Number，只会取整数
+        *   -parseFloat()和parsrInt()类似，不同的是它可以获得有效的整数
+        *   -如果对非String使用parseInt()或者parseFloat() 它会先将其转换成string再操作
+    * */
+
+      var a = "123"
+      a = Number(a);
+      console.log(typeof a);
+      console.log(a)
+
+      var b = true;
+      b = Number(b)
+      console.log(typeof b)
+      console.log(b)
+    </script>
+
+</head>
+<body>
+
+</body>
+</html>

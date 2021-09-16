@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript">
+      var name = "全局";
+      function fun(){
+        console.log(this.name)
+      }
+      var obj = {
+        name:"孙悟空",
+        sayName:fun
+      };
+      var obj2 = {
+        name:"沙和尚",
+        sayName:fun
+      }
+      obj.sayName()
+      obj2.sayName()
+      fun()
+    </script>
+</head>
+<body>
+
+</body>
+</html>

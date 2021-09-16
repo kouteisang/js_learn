@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+  <script type="text/javascript">
+    /**
+     * 对象的属性名不强制要求遵循标志服的规范
+     * 什么乱七八糟的名字都可以使用
+     * @type {Object}
+     */
+    var obj = new Object();
+    obj.name = 'Cheng';
+    /**
+     * 如果使用特殊的属性名，不能采用.的方式来操作
+     *  需要使用另一种方式
+     *    语法：对象["属性名"] = 属性值
+     *  读取时也需要采用这种方式
+     */
+    obj["123"]=789
+    console.log(obj["123"])
+    /**
+     * 属性值甚至可以是一个对象
+     */
+    /**
+     * 通过in运算符 可以检查对象中是否含有指定的属性
+     */
+    /**
+     * 检查obj中是否有test2属性
+     */
+    console.log("test2" in obj)
+    console.log("name" in obj)
+
+  </script>
+
+</head>
+<body>
+
+</body>
+</html>

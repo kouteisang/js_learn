@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+
+    <script type="text/javascript">
+      var obj = new Object()
+      console.log(typeof obj)
+
+      /**
+       * 在对象中保存的值成为属性
+       * 向对象中添加属性：
+       *    语法：对象.属性名 = 属性值
+       * 如果读取对象中没有的属性，不会报错而会返回undefined
+       */
+      obj.name = "Cheng";
+      obj.gender = "male";
+      obj.age = 22;
+      console.log(obj)
+
+      /**
+       * 删除对象中的属性
+       *  语法：delete 对象.属性名
+       *  这样对象中就没有name这个属性了
+       */
+      delete  obj.name
+
+    </script>
+
+</head>
+<body>
+
+</body>
+</html>

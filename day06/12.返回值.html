@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript">
+      /**
+       * return ; 相当于return undefined
+       * @param a
+       * @param b
+       * @param c
+       * @returns {*}
+       */
+        function sum(a, b, c){
+          return a+b+c;
+        }
+        alert(sum(1, 2, 3))
+
+
+      function fun3(){
+            function fun4(){
+                alert("it is ok")
+            }
+            return fun4();
+      }
+      a = fun3()
+      console.log(a)
+    </script>
+</head>
+<body>
+
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+
+    <script>
+      /**
+       * 强制类型转换
+       * 方法一：toString()方法：
+       *  该方法不会影响原变量，它会将转换的结果返回
+       *  null和undefinied这两个值没有undefined方法
+       * 方法二：调用String()函数，并将被转转换的当作参数传递
+       *
+       */
+      var a = 123;
+      console.log(typeof a);
+      console.log(a.toString());
+      a = a.toString()
+      console.log(typeof a)
+      console.log(typeof String(null));
+    </script>
+
+
+</head>
+<body>
+
+</body>
+</html>
