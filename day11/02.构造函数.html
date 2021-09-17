@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript">
+      /**
+       * 创建一个Person构造函数
+       *  - 在Person构造函数中
+       */
+      function Person(name, age, gender) {
+        this.name = name;
+        this.age = age;
+        this.gender = gender;
+        this.sayName = fun; //将sayName方法进行提取
+      }
+
+      /**
+       * 这样的缺点
+       *  1. 将函数定义在全局作用阈中，污染了全局作用阈的命名空间
+       *  2. 而且定义在全局作用阈中很不安全
+       */
+      function fun() {
+        alert("hello I am ", this.name)
+      };
+      //创建一个Person的实例
+      var per = new Person(1, 1, 1)
+      per.sayName()
+    </script>
+</head>
+<body>
+
+</body>
+</html>

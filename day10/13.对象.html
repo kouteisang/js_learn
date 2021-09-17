@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript">
+        var obj = {
+          name:"sunwukong",
+          age:18,
+          gender:'nan',
+          sayName:function (){
+            alert(this.name)
+          }
+        };
+
+        obj.sayName()
+
+        /*
+        * 使用工厂方法创建对象
+        *   通过该方法可以大批量创建对象
+        * */
+        function createPerson(name, age, gender) {
+          var obj = new Object()
+          obj.name=name;
+          obj.age=age;
+          obj.gender=gender;
+          obj.sayName = function () {
+            alert(this.name)
+          }
+          return obj;
+        }
+        var obj2 = createPerson(1, 1, 1);
+        var obj3 = createPerson(2, 2, 2);
+        var obj4 = createPerson(3, 3, 3);
+        console.log(obj2);
+        console.log(obj3);
+        console.log(obj4);
+        function createDog(name, age) {
+            var obj = new Object();
+            obj.name = name;
+            obj.age = age;
+            obj.sayHello = function (){
+                alert("汪汪～～～")
+            }
+            return obj;
+        };
+
+        /*
+        *   使用工厂模式创建的对象都是object，无法进行区分
+        * */
+        var dog = createDog("旺财", 1)
+        dog.sayHello();
+
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

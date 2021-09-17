@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript">
+      /**
+       * 原型 prototype
+       *  我门所创建的每一个函数，解析器都会向函数中添加一个prototype属性
+       *
+       * 如果函数作为普通函数调用prototype没有任何作用
+       * 当函数通过构造函数调用时
+       * 原型对象就相当于一个公共区域，所有同一个类的实例第可以访问到这个原型对象
+       *
+       * 当我们访问一个对象的属性和方法时，它会现在对象中寻找，如果对象中没有会在原型中寻找
+       *
+       * 因此我们可以把公共的属性和方法保存到原型中
+       */
+      function MyClass(){
+
+      }
+      var mc = new MyClass()
+      MyClass.prototype.a = "hello"
+      console.log(mc.a)
+      mc.a = 'hello_new'
+      console.log(mc.a)
+    </script>
+</head>
+<body>
+
+</body>
+</html>
