@@ -16,14 +16,20 @@
        *
        * 因此我们可以把公共的属性和方法保存到原型中
        */
-      function MyClass(){
-
+      function MyClass(name){
+          this.name = name;
       }
       var mc = new MyClass()
       MyClass.prototype.a = "hello"
       console.log(mc.a)
       mc.a = 'hello_new'
       console.log(mc.a)
+      MyClass.prototype.sayName = function (){
+        alert("hello my name is "+ this.name);
+      };
+      var mc2 = new MyClass("Cheng Huang");
+      console.log(mc2.name)
+      mc2.sayName();
     </script>
 </head>
 <body>
