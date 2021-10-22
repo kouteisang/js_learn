@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 
+        我们可以在事件对应的属性中设置一些js代码
+            这样当事件被触发是，这些代码将会执行
+            事件，就是用户和浏览器之间的交互行为比如：点击按钮，鼠标移动，关闭窗口等。
+            这样当事件被触发时，其对应的函数将会被执行
+            像这种为单击事件绑定的函数，我们称为单击响应函数
+     -->
+    <button id="btn">我是一个按钮</button>
+    <script>
+        //可以为按钮的对应事件绑定处理函数的形式来相应事件
+            var btn = document.getElementById("btn");
+            console.log(btn)
+            btn.ondblclick = function(){
+                alert("你还点我？")
+            }
+    </script>
+</body>
+</html>

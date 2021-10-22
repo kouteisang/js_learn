@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+      <script>
+        function Person(name, age) {
+          this.name = name;
+          this.age = age;
+        }
+        function getAdult(arr){
+          var newPerson = [];
+          for(var i = 0; i < arr.length; i ++){
+            if(arr[i].age >= 18){
+                newPerson.push(arr[i]);
+            }
+          }
+          return newPerson;
+        }
+
+        //修改Person原型的toString
+        Person.prototype.toString = function () {
+          return "Person name = ["+this.name + "]" + "age = [" + this.age + "]"
+        }
+
+        //创建一个person对象
+        var per = new Person("孙悟空",18);
+        let per1 = new Person("孙悟空1",28);
+        var per2 = new Person("孙悟空2",8);
+        var per3 = new Person("孙悟空3",16);
+        var per4 = new Person("孙悟空4",38);
+        var perArr = [per, per1, per2, per3, per4]
+        for (let adultElement of getAdult(perArr)) {
+          console.log(adultElement)
+        }
+      </script>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./reset.css">
+    <style>
+        .outer{
+            width: 710px;
+            margin: 10px auto;
+            background-color: #bfa;
+            padding: 10px;
+            text-align: center;
+        }
+    </style>
+    <script>
+        window.onload = function(){
+            var prev = document.getElementById("prev");
+            var next = document.getElementById("next");
+            var img = document.getElementsByTagName("img")[0];
+            var imgArr = ["../img/05/1.png","../img/05/2.png"];
+            var index = 0;
+            // 要切换图片就是要修改img的src属性
+            //分别为两个按钮绑定单击相应函数
+            prev.onclick = function(){
+                /*
+                    切换到上一张，索引自减
+                */
+                index --;
+                if(index == -1){
+                    index = imgArr.length-1;
+                }
+                img.src = imgArr[index]
+            }
+            next.onclick = function(){
+                // 切换到下一张 所以自增
+                index ++;
+                if(index == imgArr.length){
+                    index = 0;
+                }
+                img.src = imgArr[index]
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="outer">
+        <img src="../img/05/1.png" alt="">
+        <button id= 'prev'>上一张</button>
+        <button id= 'next'>下一张</button>
+    </div>
+</body>
+</html>

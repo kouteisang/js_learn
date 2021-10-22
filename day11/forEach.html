@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+  <script type="text/javascript">
+    //一般我们都是使用for来遍历数组
+    //JS中还为我们提供了一个方法来遍历数组
+    //forEach()
+    // -这个方法只支持IE8以上的浏览器
+
+    /**
+     * forEach()方法需要一个函数作为参数
+     *  - 像这种函数，由我们创建但是不由我们调用的，我们称之为回掉函数
+     */
+    let arr = [1,2,3,4,5]
+    /**
+     * 数组中有几个元素 这里面的函数就会执行几次，每次执行时浏览器会将遍历的元素以实参的形式传递进来，我们可以定义形参，来读取这些内容
+     * 浏览器会在我们的回掉函数中传递三个参数
+     *  -第一个参数：就是当前正在遍历的元素
+     *  -第二个参数：当前正在遍历的元素的索引
+     *  -第三个元素：就是正在遍历的数组
+     */
+    arr.forEach(function (value, index, obj) {
+      // console.log(value+","+index+","+obj);
+      console.log(typeof obj)
+    });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,52 @@
+#total{
+    width: 446px;
+    height: 427px;
+    position: relative;
+}
+
+#total .inner{
+    border: 1px solid black;
+    margin-top: 10px;
+    padding-bottom: 10px;
+}
+
+#total .inner p{
+    margin: 30px 10px;
+}
+
+#total .inner #city,
+#total .inner #game,
+#total .inner #phone{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+
+#total .inner #city li,
+#total .inner #game li,
+#total .inner #phone li{
+    border: 1px solid black;
+    background-color: #bfa;
+    display: black;
+    height: 35px;
+    padding: 0px 5px;
+    line-height: 35px;
+    text-align: center;
+    margin: 0 10px;
+    margin-bottom: 10px;
+}
+
+#btnList{
+    overflow: hidden; 
+    position: absolute;
+    left: 460px;
+    top: 10px;
+}
+
+#btnList div{
+    margin-bottom: 15px;
+}
+
+#btnList div button{
+    width: 315px;
+}

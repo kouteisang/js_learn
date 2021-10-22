@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+    <script>
+        function operate(idButton, fun){
+            var btn = document.getElementById(idButton);
+            btn.onclick = fun;
+        }
+        window.onload = function(){
+            items = document.getElementsByName("items");
+            //1.checkAllBtn
+            var checkAllBtn = document.getElementById("checkAllBtn");
+            checkAllBtn.onclick = function(){
+                //设置四个多选框变成选中状态
+                var items = document.getElementsByName("items");
+                for(var i = 0; i < items.length; i ++){
+                    items[i].checked = true;
+                }
+                var checkedAllBox = document.getElementById("checkedAllBox");
+                checkedAllBox.checked = true;
+
+            }
+            //2.checkNoBtn
+            operate("checkNoBtn", function(){
+                for(var i = 0; i < items.length; i ++){
+                    items[i].checked = false;
+                }
+                var checkedAllBox = document.getElementById("checkedAllBox");
+                checkedAllBox.checked = false;
+            })
+            //3.checkRevBtn
+            operate("checkRevBtn", function(){
+                var cnt = 0;
+                for(var i = 0; i < items.length; i ++){
+                    items[i].checked = !items[i].checked;
+                    if(items[i].checked){
+                        cnt ++;
+                    }
+                }
+                var checkedAllBox = document.getElementById("checkedAllBox");
+                if(cnt == items.length)
+                    checkedAllBox.checked = true;
+                else checkedAllBox.checked = false;
+            })
+            //全选 / 全不选多选框
+            // 当它选中时，其余的也选中，当它取消时其余的也取消
+            // 在时间的响应函数中，响应函数是给谁绑定的，this就是谁
+        
+            checkedAllBox.onclick = function(){
+                for(var i = 0; i < items.length; i ++){
+                    items[i].checked = this.checked;
+                } 
+            }
+
+            for(var i = 0; i < items.length; i ++){
+                items[i]. onclick = function(){
+                    var cnt = 0;
+                    for(var j = 0; j < items.length; j ++){
+                        if(items[j].checked == true){
+                            cnt ++;
+                        }
+                    }
+                    if(cnt == items.length){
+                        var checkedAllBox = document.getElementById("checkedAllBox");
+                        checkedAllBox.checked = true;
+                    }else{
+                        var checkedAllBox = document.getElementById("checkedAllBox");
+                        checkedAllBox.checked = false;
+                    }
+                }
+            }
+         
+        }
+    </script>
+
+</head>
+<body>
+    <form action="" method="post">
+        你爱好的运动？
+        <input type="checkbox" id="checkedAllBox"/>全选/全不选
+        <br />
+        
+        <input type="checkbox" name="items" id="" value="足球" />足球
+        <input type="checkbox" name="items" id="" value="篮球" />篮球
+        <input type="checkbox" name="items" id="" value="羽毛球" />羽毛足球
+        <input type="checkbox" name="items" id="" value="乒乓球" />乒乓球
+        <br />
+        <input type="button" name="" id="checkAllBtn" value="全  选" />
+        <input type="button" name="" id="checkNoBtn" value="全不选" />
+        <input type="button" name="" id="checkRevBtn" value="反  选" />
+        <input type="button" name="" id="sendBtn" value="提  交" />
+    </form>
+</body>
+</html>

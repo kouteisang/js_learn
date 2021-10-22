@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+      <script type="text/javascript">
+        var arr = new Array();
+        //使用typeof检查一个数组时，会返回object
+        //读取不存在的返回undefined
+        console.log(typeof arr);
+        //获取数组的长度，获取数组里面有几个元素
+        arr[0] = 1;
+        arr[5] = 2;
+        //语法：数组.length
+        console.log(arr.length)
+        //修改length
+        arr.length = 10
+        console.log(arr.length)
+        console.log(arr)
+        //如果修改的length大于原长度，则多出部分会空出来
+        //如果修改的length小于原长度，则多出的元素会被删除
+      </script>
+</body>
+</html>

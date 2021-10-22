@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <script>
+      /**
+       * slice()
+       * 该方法不会改变原数组，而是将截取的元素封装到一个新数组中
+       *    1、截取开始的位置
+       *    2、截取结束的位置
+       *            第二个参数可以不写，也可以写负数，负数和python一样
+       *    左闭右开
+       */
+      var arr = [1,2,3,4,5]
+      for (const number of arr.slice(0, -2)) {
+          console.log(number)
+      }
+
+      /**
+       * splice()
+       *    -可以用于删除数组中的指定元素，使用splice()会影响到原数组，会将指定元素从原数组中删除
+       *        并将被删除的元素作为返回值返回
+       *    -参数：
+       *        第一个：表示开始位置的索引
+       *        第二个：表示删除的数量
+       *        第三个几以后的参数可以传递一些新的元素，这些元素将自动插入到开始位置索引前
+       */
+      arr.splice(1, 2)
+      console.log(arr)
+    </script>
+</body>
+</html>

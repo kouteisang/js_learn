@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript">
+    window.onload = function(){
+        var body = document.getElementsByTagName("body")[0];
+        // 获取body
+        body = document.body;
+        // 保存的是html根标签
+        var de = document.documentElement;
+        // 代表的是页面中的所有的元素
+        var allall = document.all;
+        //上述和下面这个是等价的
+        allstar = document.getElementsByTagName("*")
+        console.log(body)
+        console.log(de)
+        console.log(allall.length)
+        console.log(allstar.length)
+
+        //根据元素的class属性值查询一组元素节点对象
+        //兼容性 不支持ie8及一下
+        // 虽然IE8中没有getElementsByClassName() 但是可以使用querySelector()来查询
+        var box1 = document.getElementsByClassName("box1");
+        console.log(box1.length)
+
+        //这个方法很强大，需要一个选择器的字符串作为参数
+        var div = document.querySelector(".box1 div");
+        console.log(div.innerHTML)
+
+        // 使用该方法总会返回唯一的一个元素，如果满足条件的有多个，也只会返回第一个
+        var box1 = document.querySelector(".box1");
+        console.log(box1)
+
+        //支持IE8及以上
+        // 该方法和querySelector()用法类似，不同的是它会将符合条件的元素封装到一个数组中返回
+        // 即使符合条件的元素只有一个也会返回数组
+        var boxs = document.querySelectorAll(".box1");
+        console.log(boxs.length) 
+    }
+    </script>
+</head>
+<body>
+    <div class="box1">
+        <div>我是inner中的div</div>
+    </div>
+    <div class="box1">
+        <div>我是inner中的div</div>
+    </div>
+    <div class="box1">
+        <div>我是inner中的div</div>
+    </div>
+    <div></div>
+</body>
+</html>
