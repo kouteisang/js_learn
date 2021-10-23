@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #box1{
+            width: 200px;
+            height: 200px;
+            background-color: red;
+        }
+    </style>
+
+    <script>
+        window.onload = function(){
+            var box1 = document.getElementById("box1");
+            var btn01 = document.getElementById("btn01");
+            btn01.onclick = function(){
+                //修改box1的宽度
+                /**
+                 * 通过JS修改元素的样式：
+                 *  语法： 元素.style.样式名 = 样式值
+                 * 注意： 如果CSS的样式名中含有-
+                 *  这种名称在JS中是不合法的，比如backgrond-color
+                 *  需要将这种样式名修改为驼峰命名法
+                 *  我们通过style属性设置的样式都是内联样式，内联样式有较高的优先级，一般设置完成之后会立即生效
+                 *  如果在样式中写了!important,则此时样式会有最高的优先级，将导致js设置的样式失效
+                 */
+                box1.style.width = "300px";
+                box1.style.backgroundColor = "#bfa";
+            };
+            var btn02 = document.getElementById("btn02");
+            /**
+             *  通过style属性设置和读取的都是内联样式，无法读取样式表中的样式，读取的均为内敛样式
+             */
+            btn02.onclick = function(){
+                alert(box1.style.backgroundColor)
+            };
+        }
+    </script>
+
+</head>
+<body> 
+    <button id = "btn01">修改样式</button>
+    <button id = "btn02">读取样式</button>
+    <br><br>
+    <div id="box1"></div>
+</body>
+</html>

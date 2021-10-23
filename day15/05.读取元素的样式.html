@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #box01{
+            width: 100px;
+            height: 100px;
+            background-color: yellow;
+        }
+    </style>
+
+    <script>
+        window.onload = function(){
+            //点击按钮以后读取box1的样式
+            var box01 = document.getElementById("box01");
+            var btn01 = document.getElementById("btn01");
+            btn01.onclick = function(){
+                /*
+                    获取当前显示的样式
+                        语法：元素.currentStyle.样式名
+                        他可以读取当前元素正在显示的样式
+                        currentStyle只有IE浏览器支持，其他浏览器都不支持
+                */
+              // alert(box01.currentStyle.height);
+                /*
+                    在其他浏览器中可以使用getComputedStyle()这个方法来获取元素当前的样式
+                    这个方法是window的方法，可以直接使用
+                    parameters：
+                        1. element
+                        2. normally we write null, but we can also write Pseudo-element
+                    该方法会返回一个对象，对象中封装了当前元素对应的样式,可以通过对象.样式名老读取样式
+                    如果获取的样式没有设置，则会获取到真实的值，而不是默认值
+                    该方法不支持IE8及一下的浏览器使用
+
+                    通过currentStyle和getComputedStyle()读取的样式都是只读的
+                */
+                var width = getStyle(box01, "width");
+                alert(width)
+            }
+        }
+
+        /*
+            定义一个函数，用来获取指定元素的当前样式
+                参数：obj 要获取样式的元素
+                     name 要获取的样式名
+        */
+        function getStyle(obj, name){
+            if(window.getComputedStyle){
+                return getComputedStyle(obj, null)[name]
+            }else{
+                return obj.currentStyle[name]
+            }
+
+
+        }
+
+
+    </script>
+
+</head>
+<body>
+    <button id="btn01">得到当前样式</button>
+    <br><br>
+    <div id="box01"></div>
+</body>
+</html>

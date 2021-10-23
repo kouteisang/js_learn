@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #box1{
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            padding: 10px;
+            border: 10px solid yellow;
+        }
+    </style>
+    
+    <script>
+        window.onclick = function(){
+            //clientWidth和clientHeight返回的是可见宽度和可见高度的大小，包括内容区和内边距,不包括外边框
+            //这些属性都是只读的，不能进行修改
+            // var btn01 = document.getElementById("btn01");
+            // var box1 = document.getElementById("box1");
+            // btn01.onclick = function(){
+            //     alert(box1.clientWidth);
+            // }
+            
+            //offsetWidth和offsetHeight 获取元素的整个的宽度和高度，包括内容区、内边距和边框
+            
+            //offsetParent
+            // - 可以用来获取当前元素的定位父元素
+            // - 会获取到离当前元素最近的开启了定位的祖先元素
+            // - 如果所有的祖先元素都没有开启定位，则返回body
+            
+            /*
+                offsetLeft
+                    - 当前元素相对于其度元素的水平偏移量
+                    - 当前元素相对于其定位父元素的垂直偏移量
+            */
+           var offsetleft = document.getElementById("box1").offsetLeft;
+           alert(offsetleft)
+        }
+    </script>
+
+
+</head>
+<body>
+    <button id = "btn01">点我一下</button>
+    <br><br>
+    <div id="box1"></div>
+</body>
+</html>
