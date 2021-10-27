@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        /*
+            DOM：文档对象模型
+            BOM：可以通过JS来操作浏览器
+            在BOM上为我们提供了一组对象，用来完成对浏览器的操作
+            - BOM对象：
+                window:
+                    -window:对象代表的是整个浏览器的窗口，同时window也是网页中的全局对象
+                navigator
+                    -navagator:代表了当前浏览器的信息，通过该对象可以来识别不同的浏览器
+                location
+                    -location:代表了当前浏览器的地址栏信息，通过location可以获取地址栏信息，或者操作浏览器跳转页面
+                history
+                    - 代表浏览器的历史记录，可以通过该对象来操作浏览器的历史记录
+                        由于隐私原因，该对象不能获取到具体的历史记录，只能操作浏览器向前向后翻页
+                        而且该操作只在当次访问时有效
+                screen
+                    - screen：代表用户的屏幕的信息，通过该对象可以获取到用户的显示器的相关的信息
+            这些BOM对象在浏览器中都是作为window对象的属性保存的
+                可以通过window对象来使用，也可以直接使用。
+        */
+        /*
+            Navigator:
+                由于历史原因，navigator中的大部分属性已经不能帮助我们识别浏览器了
+                一般我们只会使用userAgent来判断浏览器的信息，userAgent等价于浏览器，userAgent就是一个字符串，这个字符串中包含有用来描述浏览器信息的内容
+                不同的浏览器会有不同的userAgent
+                在IE11中已经将微软和IE相关的标志都去除了，所以基本不能通过userAgent来识别一个浏览器是否是IE了
+        */
+        console.log(navigator.userAgent);
+        if(navigator.userAgent.includes("Firefox")){
+            alert("True"); 
+        }
+        /*
+            如果通过userAgent不能判断，还可以通过一些浏览器中特有的对象，来判断浏览器的信息
+            比如：ActiveXObject 是用来发送ajax请求的，这个属性只有ie中有 
+        */
+       //"xx" in window检查某个对象中是否有某个属性
+       if("ActiveXObject" in window){
+           alert("你是IE");
+       }else{
+            alert("你不是IE")
+       }
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

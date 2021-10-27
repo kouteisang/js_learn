@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #areaDiv{
+            width: 200px;
+            height: 100px;
+            border: 1px solid black;
+        }
+        #showMsg{
+            margin-top: 20px;
+            width: 200px;
+            height: 50px;
+            border:1px solid black;
+        }
+    </style>
+    <script>
+        window.onload = function(){
+            var areaDiv = document.getElementById("areaDiv");
+            var showMsg = document.getElementById("showMsg");
+            /*
+                onmousemove
+                    该事件将会在鼠标在元素中移动时被触发
+                事件对象
+                    当事件的响应函数被触发时，浏览器每次都会将一个事件对象作为实参传递给响应函数
+                    在事件对象中封装了当前事件相关的一切信息，比如鼠标的坐标，键盘那个按键被按下，鼠标滚轮移动的方向。
+                在ie8中，响应函数被触发时，浏览器不会传递事件对象，在ie8中事件对象是window对象的属性保存的
+            */ 
+            areaDiv.onmousemove = function(event){
+                if(!event){
+                    event = window.event;
+                }
+               showMsg.innerHTML = "("+event.clientX+","+event.clientY+")";
+            };
+        }
+    </script>
+</head>
+<body>
+    <div id="areaDiv">
+
+    </div>
+    <div id="showMsg">
+
+    </div>
+</body>
+</html>

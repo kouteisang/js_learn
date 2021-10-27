@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+    <style>
+        #box1{
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            position: absolute;
+        }
+    </style>
+
+    <script>
+        window.onload = function(){
+            console.log(0||false)
+            /*
+                使div可以跟随鼠标移动
+            */
+           //获取box1
+           var box1 = document.getElementById("box1");
+           //绑定鼠标移动事件
+           document.onmousemove = function(event){
+               //解决兼容性问题
+                event = event || window.event;
+                //获取鼠标的坐标
+                var left = event.clientX;
+                //设置地v的偏移量
+                var top = event.clientY;
+                /*
+                    pageX 和 pageY是相对于页面的
+                    对于IE8及一下不支持
+                 */
+                /*
+                    firefox等浏览器认为scrollTop是html的
+                    chrome 认为是body的
+                */
+                console.log(document.body.scrollTop || document.documentElement.scrollTop);
+                scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
+
+                box1.style.left = left + "px";
+                box1.style.top = top+scrollTop + "px";
+
+           }
+        }
+    </script>
+</head>
+<body style="height: 1000px;">
+    <div id="box1"></div>
+</body>
+</html>

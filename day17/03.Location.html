@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+    <script>
+        /*
+            Location
+                -该对象中封装了浏览器的地址栏信息
+                如果直接打印Location则可以获取地址栏的信息完整路径
+        */
+       window.onload = function(){
+           var btn01 = document.getElementById("btn01");
+           btn01.onclick = function(){
+            //    alert(location)
+            //也可以写相对路径
+            //如果直接将location属性修改为完整的路径或者相对路径，则我们的页面会自动跳转到该路径，并且回深成相应的历史记录
+                // location = "https:www.google.com";
+                //alert(location.hostname)
+                // assign() 用来跳转到其他页面，作用和直接修改location一样，会生成历史记录
+                //location.assign("https://www.google.com");
+                //reload() 重新加载页面和刷新一样 如果在方法中传递一个true作为参数，则会强制清空缓存刷新页面
+                //location.reload(true);
+                //replace()可以使用一个新的页面替换当前页面，调用完毕也会跳转页面，不会生成历史记录，不能使用回退按钮回退
+                location.replace("http://www.google.com");
+           }
+       }
+    </script>
+
+</head>
+<body>
+    <button id="btn01">点我一下</button>
+</body>
+</html>

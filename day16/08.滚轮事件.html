@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #box1{
+            width: 100px;
+            min-height: 50px;
+            background-image: linear-gradient(blue, skyblue) ;
+        }
+    </style>
+    <script>
+        window.onload = function(){
+            /*
+                当鼠标滚轮乡下滚动时,box1变长
+                当滚轮向上滚动时box1变短
+             */
+            //获取id为box1的div
+            var box1 = document.getElementById("box1");
+            //为box1绑定鼠标滚轮滚动的事件
+            box1.onwheel = function(event){
+                event = event || window.event;
+                //判断鼠标滚轮滚动的方向
+                // Chrome向上滚动+， 向下滚动-
+                if(event.wheelDelta > 0){
+                    var currentHeight = getComputedStyle(box1, null)["height"];
+                    currentHeight = parseInt(currentHeight, 10);
+                    box1.style.height = currentHeight - 10 + "px";
+                }else if(event.wheelDelta <= 0){
+                    var currentHeight = getComputedStyle(box1, null)["height"];
+                    currentHeight = parseInt(currentHeight, 10);
+                    box1.style.height = currentHeight + 10 + "px";
+                }
+                return false;
+            }
+        }
+    </script>
+</head>
+<body style="height: 1000px;">
+    <div id="box1"></div>
+</body>
+</html>  
