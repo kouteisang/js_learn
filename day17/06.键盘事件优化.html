@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #box1{
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            position: absolute;
+        }
+    </style>
+    <script>
+        window.onload = function(){
+            /*
+                开启一个定时器，来控制div的移动
+            */
+           var speed = 10;
+           document.onkeydown = function(event){
+               event = event || window.event;
+               if(event.shiftKey){
+                   speed = 20;
+               }else{
+                   speed = 10;
+               }
+               dir = event.keyCode;
+           }
+           //当按键松开时div不再移动
+           document.onkeyup = function(event){
+               event = event || window.event;
+               dir = 0;
+           }
+
+           var box1 = document.getElementById("box1");   
+           //通过修改dir来更改方法  
+           var dir = 0;
+           setInterval(function(){
+                var ot = box1.offsetTop;
+                var ol = box1.offsetLeft;
+                switch(dir){
+                    case 38:
+                        box1.style.top = ot - speed + "px";
+                        break;
+                    case 40:
+                        box1.style.top = ot + speed + "px";
+                        break;
+                    case 37:
+                        box1.style.left = ol - speed + "px";
+                        break;
+                    case 39:
+                        box1.style.left = ol + speed + "px";
+                        break;
+                }
+           },30);
+        };
+    </script>
+</head>
+<body>
+    <div id="box1"></div>
+</body>
+</html>

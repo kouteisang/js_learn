@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #box1{
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            position: absolute;
+            left: 0px;
+        }
+    </style>
+    <script>
+        window.onload = function(){
+            var box1 = document.getElementById('box1');
+            var btn01 = document.getElementById("btn01");
+            var btn02 = document.getElementById("btn02");
+            //点击btn01向右移动
+            btn01.onclick = function(){
+                move(box1, 800, 10);
+            };
+            //点击btn02后使box1向左移动(left值减小)
+            btn02.onclick = function(){
+                move(box1, 0, 10)
+            }
+        }
+        var number;
+        //尝试创建一个可以执行简单动画的函数
+        function move(obj, target, speed){
+            clearInterval(number);
+            //如果从0向800移动，则speed为正
+            //如果从800到0移动，则speed为负
+            var current = parseInt(getComputedStyle(obj,null)["left"]);
+            if(current >= target){
+                speed*=-1;
+            }
+            number = setInterval(() => {
+                var originLeft = getComputedStyle(obj,null)["left"];
+                var newValue = parseInt(originLeft,10) + speed;
+                if( (speed > 0 && newValue >= target) || (speed < 0 && newValue <= 0) ){
+                    newValue = target;
+                }
+                obj.style.left = newValue + "px";
+                //当元素移动到800px时，使其停止执行动画
+                if(newValue == target){
+                    clearInterval(number)
+                }
+            }, 30);
+        }
+    </script>
+</head>
+<body>
+    <button id="btn01">点击按钮以后box向右移动</button>
+    <button id="btn02">点击按钮以后box向左移动</button>
+    <div id="box1"></div>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script rel="text/javascript" src="./tools.js"></script>
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #box1{
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            position: absolute;
+            left: 0px;
+        }
+        #box2{
+            width: 100px;
+            height: 100px;
+            background-color: yellow;
+            position: absolute;
+            left: 0px;
+            top: 200px;
+        }
+    </style>
+    <script>
+        window.onload = function(){
+            var box1 = document.getElementById('box1');
+            var box2 = document.getElementById('box2');
+            var btn01 = document.getElementById("btn01");
+            var btn02 = document.getElementById("btn02");
+            var btn03 = document.getElementById("btn03");
+            var btn04 = document.getElementById("btn04");
+            //点击btn01向右移动
+            btn01.onclick = function(){
+                move(box1, "left", 800, 10);
+            };
+            //点击btn02后使box1向左移动(left值减小)
+            btn02.onclick = function(){
+                move(box1, "left", 0, 10)
+            }
+            btn03.onclick = function(){
+                move(box2, "left", 800, 10)
+            }
+            btn04.onclick = function(){
+                move(box2, "height", 800, 10, ()=>{
+                    alert("动画执行完毕..")
+                });
+            }
+        }
+
+    </script>
+</head>
+<body>
+    <button id="btn01">点击按钮以后box1向右移动</button>
+    <button id="btn02">点击按钮以后box1向左移动</button>
+    <button id="btn03">点击按钮以后box2向右移动</button>
+    <button id="btn04">test</button>
+    <div id="box1"></div>
+    <div id="box2"></div>
+</body>
+</html>

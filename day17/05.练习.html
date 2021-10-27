@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        window.onload = function(){
+            var btn01 = document.getElementById("btn01");
+            var btn02 = document.getElementById("btn02");
+            var img1 = document.getElementById("img1");
+            var imgArr = ["../img/tb/1.png","../img/tb/2.png","../img/tb/3.png"];
+            var number;
+            var i = -1;
+            btn01.onclick = function(){
+                /*
+                    目前我们每点击一次，就会开启一个定时器，点击多次就会开启多个定时器，这就会导致图片的切换速度过快
+                    并且我们只能关闭做后一次开启的定时器
+                */
+               //在开启定时器之前我们需要将上一个定时器关闭
+               clearInterval(number)
+                number = setInterval(function(){
+                    i ++;
+                    i = i % imgArr.length;
+                    img1.src = imgArr[i];
+                }, 2000);
+            };
+            btn02.onclick = function(){
+                //clearInterval()可以接受任意的参数
+                // 如果参数是一个有效的定时器的标识，则停止对应的定时器
+                // 如果参数不是一个有效的标识，则什么也不做
+                clearInterval(number);
+            }
+        }
+    </script>
+</head>
+<body>
+    <img id = "img1" src="../img/tb/1.png" alt=""/>
+    <button id = "btn01">按钮开始</button>
+    <button id = "btn02">按钮结束</button>
+</body>
+</html>
