@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>下拉菜单</title>
+
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            font: 12px/180% Arial, Helvetica, sans-serif;
+        }
+        a{
+            text-decoration: none;
+            display: block;
+            color: #576b95;
+            padding-left: 5px;
+            padding-top: 3px;
+            padding-bottom: 3px;
+            border-bottom: 1px solid #e4e4e4;
+            background-color: #F5F5F5;
+        }
+        a:hover{
+            background-color: #576b95;
+            color: #FFFFFF;
+        }
+        .wrapper{
+            margin: 0 auto;
+            width: 150px;
+            background-color: #1477fe;
+        }
+        span{
+            display: block;
+            width: 130px;
+            background-color: #1477fe;
+            color: #fff;
+            padding-left: 20px;
+            font-weight: bold;
+            height: 30px;
+            line-height: 30px;
+            overflow: hidden;
+            cursor: pointer;
+            border-bottom: 1px solid #e4e4e4;
+        }
+        .wrapper .collapsed{
+            height: 27px;
+            overflow: hidden;
+        }
+
+    </style>
+
+</head>
+<body>
+    <div class="wrapper">
+        <div >
+            <span>在线工具</span>
+            <a href="#">图像优化</a>
+            <a href="#">收藏夹图标生成</a>
+            <a href="#">邮件</a>
+            <a href="#">htaccess密码</a>
+            <a href="#">按钮图像</a>
+            <a href="#">按钮生成器</a>
+        </div>
+
+        <div  class="collapsed">
+            <span>支持我们</span>
+            <a href="#">推荐我们</a>
+            <a href="#">联系我们</a>
+            <a href="#">网络资源</a>
+        </div>
+
+        <div  class="collapsed">
+            <span>合作伙伴</span>
+            <a href="#">工具包</a>
+            <a href="#">css驱动</a>
+            <a href="#">css例子</a>
+        </div>
+
+        <div  class="collapsed">
+            <span>测试电流</span>
+            <a href="#">Current or not</a>
+            <a href="#">Current or not</a>
+            <a href="#">Current or not</a>
+            <a href="#">Current or not</a>
+        </div>
+    </div>
+
+    <script>
+        // add class
+        function addClass(obj, cn) {
+            obj.className += " "+cn;
+        }
+        // remove calss
+        function removeClass(obj, cn) {
+            var reg = new RegExp('\\b'+cn+'\\b');
+            obj.className = obj.className.replace(reg, '');
+        }
+        // have class
+        function haveClass(obj, cn) {
+            var reg = new RegExp('\\b'+cn+"\\b");
+            return reg.test(obj.className);
+        }
+        // toggle class
+        function toggleClass(obj,cn) {
+            if(haveClass(obj, cn)){
+                removeClass(obj, cn);
+            }else if(!haveClass(obj, cn)){
+                addClass(obj, cn);
+            }
+        }
+        var spans = document.getElementsByTagName('span');
+        var openDiv = spans[0].parentElement;
+        for(var i = 0; i < spans.length; i ++){
+            spans[i].onclick = function(){
+                var parentDiv = this.parentNode;
+                taggleMenu(parentDiv);
+                if(parentDiv != openDiv && !haveClass(openDiv, 'collapsed')){
+                    taggleMenu(openDiv);
+                }
+                openDiv = parentDiv;
+            }
+        }
+
+        function move(obj, attr, target, speed, callback) {
+            var current = parseInt(getComputedStyle(obj,null)[attr]);
+            if(current > target){
+                speed *= -1;
+            }
+            clearInterval(obj.timer);
+            obj.timer = setInterval(()=>{
+                var nowValue = parseInt(getComputedStyle(obj,null)[attr]) + speed;
+                if( (speed < 0 && nowValue <= target) || (speed > 0 && nowValue >= target) ){
+                    nowValue = target;
+                }
+                obj.style[attr] = nowValue + "px";
+                if(nowValue == target){
+                    clearInterval(obj.timer);
+                    if(callback){
+                        callback();
+                    }
+                }
+            },30)
+
+        }
+    
+        function taggleMenu(obj){
+            var from = obj.offsetHeight;
+                toggleClass(obj, "collapsed");
+                var to = obj.offsetHeight;
+                console.log("from -> to", from + " , "+ to);
+                // set hight to from again
+                obj.style.height = from + "px";
+                move(obj, 'height', to, 10, function(){
+                    obj.style.height = '';
+                });
+        }
+
+    </script>
+</body>
+</html>
