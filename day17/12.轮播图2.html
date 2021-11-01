@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./reset.css">
+    <title>Document</title>
+    <style>
+        .wrapper{
+            width: 520px;
+            height: 300px;
+            background-color: red;
+            margin: 50px auto;
+            overflow: hidden;
+            position: relative;
+        }
+        .wrapper .img-list{
+            position: absolute;
+            height: 300px;
+            left: 0px;
+        }
+        .wrapper .img-list li{
+            margin: 0 10px;
+            float: left;
+        }
+        .wrapper .points{
+            position: absolute;
+            bottom: 10px;
+            left: 0;
+        }
+        .wrapper .points a{
+            float: left;
+            height: 20px;
+            width: 20px;
+            margin: 0 10px;
+            background-color: yellow;
+            opacity: .5;
+        }
+        .wrapper .points a:hover{
+            background-color: black;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <ul class="img-list">
+            <li><img src="./img/01.png" alt=""></li>
+            <li><img src="./img/02.png" alt=""></li>
+            <li><img src="./img/03.png" alt=""></li>
+            <li><img src="./img/04.png" alt=""></li>
+            <li><img src="./img/05.png" alt=""></li>
+            <li><img src="./img/01.png" alt=""></li>
+        </ul>
+        <div class="points">
+            <a href="javascript:;"></a>
+            <a href="javascript:;"></a>
+            <a href="javascript:;"></a>
+            <a href="javascript:;"></a>
+            <a href="javascript:;"></a>
+        </div>
+    </div>
+
+    <script>
+        var imglist = document.querySelector('.wrapper .img-list');
+        var lis = document.getElementsByTagName('li');
+        var wrapper = document.querySelector('.wrapper');
+        var imgArr = document.getElementsByTagName('img');
+        imglist.style.width = lis.length * 520 + "px";
+        var timer;
+        // set points in the middle
+        var points = document.querySelector('.wrapper .points');
+        points.style.left = (wrapper.offsetWidth - points.offsetWidth)/2 + "px";
+        var index = 0;
+        var as = document.querySelectorAll('.wrapper .points a');
+        as[index].style.backgroundColor = 'black';
+        autoChange();
+        for(var i = 0; i < as.length; i ++){
+            as[i].number = i;
+            as[i].onclick = function () {
+                clearInterval(timer)
+                index = this.number;
+                setA();
+                move(imglist, "left", -520*index, 10, ()=>{
+                    autoChange();
+                });
+            }
+        }
+
+        function move(obj, attr, target, speed, callback) {
+            clearInterval(obj.number);
+            var current = parseInt(getComputedStyle(obj, null)[attr]);
+            if(current > target){
+                speed *= -1;
+            }
+            obj.number = setInterval(()=>{
+                current = parseInt(getComputedStyle(obj, null)[attr]);
+                var now = current + speed;
+                if( (speed < 0 && now <= target) || (speed > 0 && now >= target) ){
+                    now = target;
+                }
+                obj.style[attr] = now + "px";
+                if(now == target){
+                    clearInterval(obj.timer);
+                    if(callback){
+                        callback();
+                    }
+                }
+            },30)
+        }
+
+        function setA() {
+            if(index >= imgArr.length-1){
+                index = 0;
+                imglist.style.left = 0 + "px";
+            }
+            for(var i = 0; i < as.length; i ++){
+                as[i].style.backgroundColor = '';
+            }
+            as[index].style.backgroundColor = 'black';
+        }
+        function autoChange() {
+            timer = setInterval(()=>{
+                index ++;
+                index = index % imgArr.length;
+                move(imglist, "left", -520*index, 10, ()=>{
+                    setA();
+                });
+            }, 3000)
+        }
+    </script>
+
+</body>
+</html>

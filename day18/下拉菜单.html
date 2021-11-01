@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>二级菜单</title>
+        <style>
+            *{
+                margin: 0;
+                padding: 0;
+                list-style-type: none;
+            }
+            a,img{
+                border: 0;
+                text-decoration: none;
+            }
+            body{
+                font: 12px/180% Arial, Helvetica, sans-serif;
+            }
+            div.sdmenu{
+                width: 9.375rem;
+                margin: 0 auto;
+                font-family: "arial, helvetica, sans-serif";
+                font-size: 0.75rem;
+                padding-bottom: 0.625rem;
+                background-color: #1477fe;
+                color: #FFFFFF;
+                border-radius: 0.625rem;
+            }
+            div.sdmenu div{
+                background-color: #1477fe;
+                overflow: hidden;
+            }
+            div.sdmenu div:first-child{
+            }
+            div.sdmenu div.collapsed{
+                height: 1.5625rem;
+            }
+            div.sdmenu div span{
+                display: block;
+                height: 0.9375rem;
+                line-height: 0.9375rem;
+                overflow: hidden;
+                padding: 0.3125rem 1.5625rem;
+                font-weight: bold;
+                color: white;
+                cursor: pointer;
+                border-bottom: 1px solid #e4e4e4;
+            }
+            div.sdmenu div a{
+                display: block;
+                border-bottom: 1px solid #e4e4e4;
+                padding: 0.3125rem;
+                color: #576b95;
+                background-color: #F5F5F5;
+            }
+            div.sdmenu div a:hover{
+                background-color: #576b95;
+                color: #FFFFFF;
+            }
+    </style>
+	</head>
+	<body>
+		<div id="my_menu" class="sdmenu">
+			<div>
+				<span class="menuSpan">在线工具</span>
+				<a href="#">图像优化</a>
+				<a href="#">收藏夹图标生成</a>
+				<a href="#">邮件</a>
+				<a href="#">htaccess密码</a>
+				<a href="#">梯度图像</a>
+				<a href="#">按钮生成器</a>
+			</div>
+			<div class="collapsed">
+				<span class="menuSpan">支持我们</span>
+				<a href="#">推荐我们</a>
+				<a href="#">链接我们</a>
+				<a href="#">网络资源</a>
+			</div>
+			<div class="collapsed">
+				<span class="menuSpan">合作伙伴</span>
+				<a href="#">工具包</a>
+				<a href="#">css驱动</a>
+				<a href="#">css例子</a>
+			</div>
+			<div class="collapsed">
+				<span class="menuSpan">测试电流</span>
+				<a href="#">Current  or not</a>
+				<a href="#">Current  or not</a>
+				<a href="#">Current  or not</a>
+				<a href="#">Current  or not</a>
+			</div>
+		</div>
+        <script>
+            // 我们的每一个菜单都是一个div
+            // 当div具有collapsed这个类时 div就是折叠状态
+            // 当div没有这个类时，div就是展开的状态
+            // 单击响应函数应该绑定给span
+            
+            // 获取所有class为menuSpan的元素
+            var menuSpan = document.querySelectorAll('.menuSpan');
+            // 定义变量来保存当前打开的菜单
+            var openDiv = menuSpan[0].parentNode;
+            for(var i = 0; i < menuSpan.length; i ++){
+                menuSpan[i].onclick = function () {
+                    //获取当前元素的父元素
+                    var parentDiv = this.parentNode;
+                    toggleMenu(parentDiv);
+                    //在切换类之前，获取元素的高度
+                    if(openDiv != parentDiv && !hasClass(openDiv, "collapsed")){
+                        //toggleClass(openDiv, "collapsed")
+                        toggleMenu(openDiv)
+                    }
+                    //修改openDiv为当前打开的菜单
+                    openDiv = parentDiv;
+                }
+            }
+
+            //判断有没有
+            function hasClass(obj, cn) {
+                //判断obj中有没有cn class
+                // b2且有单词边界 \b是单词边界的意思
+                var reg = new RegExp('\\b' + cn + '\\b')
+                return reg.test(obj.className)
+            }
+            
+            //删除
+            function removeCLass(obj, cn) {
+                //创建一个正则表达式
+                var reg = new RegExp("\\b"+cn+"\\b");
+                obj.className = obj.className.replace(reg, "");
+            }
+
+            function addClass(obj, cn) {
+                if(!hasClass(obj, cn)){
+                    obj.className += ' '+cn;
+                }
+            }
+
+            //切换
+            /*
+                如果元素中具有该类，则删除
+                如果元素中没有该类，则添加
+            */
+            function toggleClass(obj, cn) {
+                if(hasClass(obj, cn)){
+                    //有则删除
+                    removeCLass(obj, cn);
+                }else {
+                    //没有 添加
+                    addClass(obj, cn);
+                }
+            }
+
+
+            //move 函数
+            function move(obj, attr, target, speed, callback) {
+                clearInterval(obj.number);
+                var current = parseInt(getComputedStyle(obj, null)[attr]);
+                if(current > target){
+                    speed *= -1;
+                }
+                obj.number = setInterval(()=>{
+                    current = parseInt(getComputedStyle(obj, null)[attr]);
+                    var now = current + speed;
+                    if( (speed < 0 && now <= target) || (speed > 0 && now >= target) ){
+                        now = target;
+                    }
+                    obj.style[attr] = now + "px";
+                    if(now == target){
+                        clearInterval(obj.timer);
+                        if(callback){
+                            callback();
+                        }
+                    }
+                },30)
+            }
+
+
+            /*
+                用来切换菜单的折叠和显示状态
+            */
+            function toggleMenu(obj) {
+                    var begin = obj.offsetHeight;
+                    toggleClass(obj, "collapsed");
+                    var end = obj.offsetHeight;
+                    obj.style.height = begin + "px";
+                    move(obj, "height", end,10, ()=>{
+                        obj.style.height = ''; 
+                    });
+                    // 从begin 到 end过渡
+                    // 将元素的高度重置为begin
+                    console.log("begin = ", begin + "  end = ", end);
+            }
+        </script>
+	</body>
+</html>

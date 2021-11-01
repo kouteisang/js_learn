@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script> 
+        /*
+            json->js对象
+            JSON.parse()
+                - 它可以将JSON字符串转换为js对象
+                - 它需要一个JSON字符串作为参数，会讲该字符串转换为JS对象
+        */
+       /*
+            js对象转换为JSON
+            JSON.stringify()
+                可以将一个JS对象转换为JSON字符串
+
+       */
+      /*
+            eval() 
+                - 这个函数可以用来执行一段字符串形式的JS代码，并将结果返回
+                - 如果使用eval()执行的字符串中含有{}，它会将{}当成代码块
+                    如果不希望将其当成代码块解析，则需要在字符串前后各加一个()
+                - eval() 这个函数功能很强大，可以直接执行一个字符串中的js代码，但是在开发中尽量不要使用，首先它的执行性能比较差
+                    然后他还有安全隐患
+      */
+     var strs = "alert('hello')";
+     eval(strs)
+    </script>
+</body>
+</html>

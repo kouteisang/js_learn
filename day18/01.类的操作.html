@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .b1{
+            width: 100px;
+            height: 100px;
+            background-color: red;
+        }
+        .b2{
+            width: 200px;
+            background-color: yellow;
+        }
+    </style>
+</head>
+<body>
+    <button id="btn01">点击按钮以后修改box的样式</button>
+    <br><br>
+    <div class="b1" id="b1"></div>
+    <script>
+        var btn01 = document.getElementById("btn01");
+        var box = document.getElementById("b1");
+        btn01.onclick = function () {
+            //修改box的样式
+            /*
+                通过style属性来修改元素的样式，每修改一个样式，浏览器就要重新旋绕一次页面
+                这样的执行的性能是比较差的，而且这种形式当我们要修改多个样式时，也不太方便
+            */
+            // box.style.width = "200px";
+            // box.style.height = "200px";
+            // box.style.backgroundColor = "yellow";
+            // 我希望一行代码可以修改多个样式
+            // 我们可以修改元素的class属性间接的修改样式
+            //这样一来 我们只需要修改一次，既可以以同时修改多个样式
+            // 浏览器只需要重新渲染页面一次，性能比较好
+            // 并且这种方式，可以使表现和行为想分离
+            var flag = hasClass(box, "b2");
+            if(!flag){
+                addClass(box, "b2")
+            }
+
+        }
+
+        //定义一个函数，用来想元素中添加指定的class属性值
+        /*
+         *  参数：
+         *      obj 要添加class属性的元素
+         *      cn  要添加的class值
+         * 
+         */
+        function addClass(obj, cn) {
+            obj.className += ' '+cn;
+        }
+
+        //判断有没有
+        function hasClass(obj, cn) {
+            //判断obj中有没有cn class
+            // b2且有单词边界 \b是单词边界的意思
+            var reg = new RegExp('\\b' + cn + '\\b')
+            return reg.test(obj.className)
+        }
+         
+        //删除
+        function removeCLass(obj, cn) {
+            //创建一个正则表达式
+            var reg = new RegExp("\\b"+cn+"\\b");
+            obj.className = obj.className.replace(reg, "");
+        }
+
+        //切换
+        /*
+            如果元素中具有该类，则删除
+            如果元素中没有该类，则添加
+        */
+        function toggleClass(obj, cn) {
+            if(hasClass(obj, cn)){
+                //有则删除
+                removeCLass(obj, cn);
+            }else {
+                //没有 添加
+                addClass(obj, cn);
+            }
+        }
+    </script>
+</body>
+</html>
